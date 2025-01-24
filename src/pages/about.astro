@@ -1,4 +1,6 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
 const pageTitle = 'About Me';
 const identity = {
     name: 'Tracy',
@@ -6,6 +8,7 @@ const identity = {
     location: 'Prescott, AZ',
     bio: 'I am a software engineer based in Prescott, AZ. I love to learn new things and share my knowledge with others.',
 }
+
 const skills = ["HTML", "CSS", "JavaScript", "PHP", "Astro"];
 const happy = true;
 const finished = false;
@@ -14,14 +17,9 @@ const goal = 3;
 const skillColor = "green";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-<style define:vars={{skillColor}}>
+<BaseLayout pageTitle={pageTitle}>
+        <style is:global define:vars={{skillColor}}>
+            /* is:global = affects every element on this page, including those created by other components */
             h1 {
                 color: blue;
                 font-size: 4rem;
@@ -33,13 +31,6 @@ const skillColor = "green";
                 font-weight: bold;
             }
         </style>
-	</head>
-    <body>
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/blog/">Blog</a>
-        
-        <h1>{pageTitle}</h1>
         <h2>... and my new Astro site!</h2>
       
         <p>Hi, I'm {identity.name}, and {identity.bio} I'm adept at:
@@ -59,6 +50,6 @@ const skillColor = "green";
         {finished && <p>I have completed the tutorial!</p>}
         
         {goal === 3 ? <p>My goal is to finish in 3 days.</p> : <p>My goal is not 3 days.</p>}
-      </body>
-
-</html>
+        
+        
+     </BaseLayout>
